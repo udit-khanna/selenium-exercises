@@ -1,0 +1,32 @@
+package Runfiles;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class Enter_number {
+	private static final String inputPhoneNumber = "//*[@class='input-container _3udlq _22ixJ undefined']/input";
+	private static final String phoneNumberMessage = "//*[@id='op_loader']/following-sibling::span[2]";
+
+	public void enterNumber(WebDriver driver, String data) {
+		try {
+			driver.findElement(By.xpath(inputPhoneNumber)).sendKeys(data);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void printErrorMessage(WebDriver driver) {
+		try {
+			if (driver.findElement(By.xpath(phoneNumberMessage)) != null) {
+				String errorMessage = driver.findElement(By.xpath(phoneNumberMessage)).getText();
+				if (errorMessage.equals(null)) {
+					System.out.println("Entered number is valid.");
+				} else {
+					System.out.println("Error message for the number entered: " + errorMessage);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
