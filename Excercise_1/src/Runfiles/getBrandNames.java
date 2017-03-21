@@ -13,12 +13,14 @@ public class getBrandNames {
 
 	public void getBrands(WebDriver driver) {
 		try {
+			System.out.println("Getting Brands' name on the page");
 			Brands = driver.findElements(By.xpath(brand_xpath));
 			for (WebElement e : Brands) {
 				System.out.println(e.getAttribute("alt"));
 			}
 			return;
 		} catch (Exception e) {
+			System.out.println("Error while getting brand names");
 			e.printStackTrace();
 		}
 	}
