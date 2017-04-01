@@ -3,20 +3,30 @@ package executable;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+
+import keywords.dragNDrop;
 
 public class ExecutableFile {
 	private static final String FIREFOXDRIVERPATH = System.getProperty("user.dir") + "\\Support_Files\\geckodriver.exe";
 	private static final String CHROMEDRIVERPATH = System.getProperty("user.dir") + "\\Support_Files\\chromedriver.exe";
 	private static final String IEDRIVERPATH = System.getProperty("user.dir") + "\\Support_Files\\IEDriverServer.exe";
 	private static final long TimeOut = 10;
+	private static final String URL = "http://demoqa.com/draggable/";
+	private static final int x = 10;
+	private static final int y = 10;
 	private static WebDriver driver;
 
 	
 	public static void main(String[] args) {
-		
+		ExecutableFile exe = new ExecutableFile();
+		dragNDrop drag = new dragNDrop();
+		exe.openBrowser("Chrome");
+		exe.navigateTo(URL);
+		drag.dragAndDrop(driver, x, y);
 		
 	}
 	
