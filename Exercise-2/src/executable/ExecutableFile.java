@@ -18,26 +18,26 @@ public class ExecutableFile {
 
 	private static final int x = 100;
 	private static final int y = 10;
-	private static final String URL_Second = "http://toolsqa.com/automation-practice-switch-windows/";
-	private static final String verifyText = "Selenium Online Trainings";
+	private static final String URL_Second = "https://www.makemytrip.com/";
+	private static final String verifyText = "Sign in with your Google Account";
 	private static WebDriver driver;
 
 	public static void main(String[] args) {
 		ExecutableFile exe = new ExecutableFile();
 		Keywords keyword = new Keywords();
-		// exe.openBrowser("Chrome");
-		// exe.navigateTo(URL_First);
-		// keyword.dragAndDrop(driver, x, y);
-		// exe.closeDriver();
+//		 exe.openBrowser("Chrome");
+//		 exe.navigateTo(URL_First);
+//		 keyword.dragAndDrop(driver, x, y);
+//		 exe.closeDriver();
 
-		// exe.openBrowser("Chrome");
-		// exe.navigateTo(URL_Second);
-		// keyword.switchFrame(driver, verifyText);
-		// exe.closeDriver();
+		 exe.openBrowser("Chrome");
+		 exe.navigateTo(URL_Second);
+		 keyword.switchFrame(driver, verifyText);
+//		 exe.closeDriver();
 
-		exe.openBrowser("firefox");
-		exe.navigateTo(URL_Second);
-		keyword.timerAlert(driver);
+//		exe.openBrowser("firefox");
+//		exe.navigateTo(URL_Second);
+//		keyword.timerAlert(driver);
 
 	}
 
