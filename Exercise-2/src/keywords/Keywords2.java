@@ -9,8 +9,10 @@ public class Keywords2 {
 
 	private static final String dragObject = "//*[@id='draggable']";
 	private static final String newWindowButton = "//*[@id='button1']";
-	private static final String newWindowText = "//*[@id='slide-16-layer-1']";
+	private static final String newWindowText = "//*[@id='slide-16-layer-4']";	//	"//*[@id='slide-16-layer-1']";
 	private static final String timerAlertButton = "//*[@id='timingAlert']";
+	private static final String alertButton = "//*[@id='alert']";
+
 
 	public void dragAndDrop(WebDriver driver, int x, int y) {
 		try {
@@ -30,8 +32,8 @@ public class Keywords2 {
 				driver.switchTo().window(winHandle);
 			}
 			driver.manage().window().maximize();
-			String actualText = driver.findElement(By.xpath(newWindowText)).getText().trim();
-			if (actualText.equalsIgnoreCase(text))
+			String actualText = driver.findElement(By.xpath(newWindowText)).getText();
+			if (actualText.contains(text))
 				System.out.println("Actual Text: '" + actualText + "' matches expected: '" + text +"'");
 			else
 				System.out.println("Actual Text: '" + actualText + "' does not match expected: '" + text +"'");
@@ -43,9 +45,10 @@ public class Keywords2 {
 		}
 	}
 
-	public void timerAlert(WebDriver driver) {
+	public void timerAlertAccept(WebDriver driver) {
 		try {
 			driver.findElement(By.xpath(timerAlertButton)).click();
+			Thread.sleep(5000);
 			Alert alert = driver.switchTo().alert();
 			System.out.println(alert.getText());
 			alert.accept();

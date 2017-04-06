@@ -1,15 +1,21 @@
 package keywords;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Keywords {
 	private static final String draggableElement = "//*[@id='draggable']";
-	private static final String loginButton = "//*[@id='ch_login_icon']/span[2]";
+	private static final String loginButton = "//*[@id='ch_login_icon']";
 	private static final String googleButton = "//*[@id='ch_login_google']";
 	private static final String verifytextElement = "//*[@class='hidden-small']";
+	private static final String frameID = "iframeResult";
+	private static final String dropdown = "//*[@contenteditable='false']/select";
 
 	public void dragAndDrop(WebDriver driver, int x, int y) {
 		try {
@@ -26,6 +32,8 @@ public class Keywords {
 			String winHandleBefore = driver.getWindowHandle();
 
 			driver.findElement(By.xpath(loginButton)).click();
+			WebDriverWait wait = new WebDriverWait(driver, 10);
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(googleButton)));
 			driver.findElement(By.xpath(googleButton)).click();
 
 			// Switch to new window opened
@@ -48,6 +56,35 @@ public class Keywords {
 			// Continue with original browser (first window)
 		} catch (Exception e) {
 			// TODO: handle exception
+		}
+	}
+
+	public void alertClose(WebDriver driver) {
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, 18);
+			wait.until(ExpectedConditions.alertIsPresent());
+			Alert alert = driver.switchTo().alert();
+			System.out.println(alert.getText());
+			alert.dismiss();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void switchToFrame(WebDriver driver) {
+		try {
+			driver.switchTo().frame(frameID);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void getCurrentValue(WebDriver driver) {
+		try {
+			Select select = new Select(driver.findElement(By.xpath(dropdown)));
+			System.out.println("Selected option is: " + select.getFirstSelectedOption().getText());
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }
