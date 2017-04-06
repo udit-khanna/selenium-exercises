@@ -1,9 +1,10 @@
 package keywords;
 
+import java.util.UUID;
+
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -16,6 +17,7 @@ public class Keywords {
 	private static final String verifytextElement = "//*[@class='hidden-small']";
 	private static final String frameID = "iframeResult";
 	private static final String dropdown = "//*[@contenteditable='false']/select";
+	private static final String messageBox = "//*[@id='avia_message_1']";
 
 	public void dragAndDrop(WebDriver driver, int x, int y) {
 		try {
@@ -55,7 +57,7 @@ public class Keywords {
 
 			// Continue with original browser (first window)
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 
@@ -83,6 +85,25 @@ public class Keywords {
 		try {
 			Select select = new Select(driver.findElement(By.xpath(dropdown)));
 			System.out.println("Selected option is: " + select.getFirstSelectedOption().getText());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void enterRandomText(WebDriver driver) {
+		try {
+			String uuid = UUID.randomUUID().toString();
+			driver.findElement(By.xpath(messageBox)).sendKeys(uuid);
+			System.out.println("Entered text is: " + uuid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void getStringInTextBox(WebDriver driver) {
+		try {
+			String enteredText = driver.findElement(By.xpath(messageBox)).getAttribute("value");
+			System.out.println("Entered text length is: " + enteredText.length());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

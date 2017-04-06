@@ -19,8 +19,6 @@ public class ExecutableFile {
 
 	private static final int x = 100;
 	private static final int y = 10;
-	private static final String URL_Second = "https://www.makemytrip.com/";
-	private static final String verifyText = "Sign in with your Google Account";
 	private static final String verificationText = "Training Batch Starts from 29th April '17";
 	private static WebDriver driver;
 
@@ -29,38 +27,37 @@ public class ExecutableFile {
 		Keywords keyword = new Keywords();
 		Keywords2 keyword2 = new Keywords2();
 
-		/*		working code		*/
-//		 exe.openBrowser("Chrome");
-//		 exe.navigateTo(URL_First);
-//		 keyword.dragAndDrop(driver, x, y);
-//		 exe.closeDriver();
+		/* working code */
+		exe.openBrowser("Chrome");
+		exe.navigateTo(URL_First);
+		keyword.dragAndDrop(driver, x, y);
+		exe.closeDriver();
 
-//		 exe.openBrowser("Firefox");
-//		 exe.navigateTo(URL_Second);
-//		 keyword.alertClose(driver);
-//		 keyword.switchFrame(driver, verifyText);
-//		 exe.closeDriver();
-		
-		/*		working code		*/		
-//		exe.openBrowser("chrome");
-//		exe.navigateTo("http://toolsqa.com/automation-practice-switch-windows/");
-//		keyword2.switchFrame(driver, verificationText);
-//		exe.closeDriver();
-		
-		/*		working code		*/		
-//		exe.openBrowser("firefox");
-//		exe.navigateTo("http://toolsqa.com/automation-practice-switch-windows/");
-//		keyword2.timerAlertAccept(driver);
-//		exe.closeDriver();
-		
+		/* working code */
+		exe.openBrowser("chrome");
+		exe.navigateTo("http://toolsqa.com/automation-practice-switch-windows/");
+		keyword2.switchFrame(driver, verificationText);
+		exe.closeDriver();
+
+		/* working code */
+		exe.openBrowser("firefox");
+		exe.navigateTo("http://toolsqa.com/automation-practice-switch-windows/");
+		keyword2.timerAlertAccept(driver);
+		exe.closeDriver();
+
+		/* working code */
 		exe.openBrowser("firefox");
 		exe.navigateTo("https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_select");
 		keyword.switchToFrame(driver);
 		keyword.getCurrentValue(driver);
+		exe.closeDriver();
 
-//		exe.openBrowser("firefox");
-//		exe.navigateTo(URL_Second);
-//		keyword.timerAlert(driver);
+		/* working code */
+		exe.openBrowser("chrome");
+		exe.navigateTo("http://www.optimusinfo.com/contact-us/");
+		keyword.enterRandomText(driver);
+		keyword.getStringInTextBox(driver);
+		exe.closeDriver();
 
 	}
 
