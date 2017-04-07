@@ -1,6 +1,7 @@
 # selenium-exercises
 This repository contains exercises related to Selenium webdriver
 
+- - - -
 ## Exercise Details:
 
 * Navigate to Freecharge.in
@@ -17,3 +18,5 @@ This repository contains exercises related to Selenium webdriver
 * Verify that price field is empty
 * Verify total number of recommended plans
 * Select most effective plan (less price and full talk time)
+
+- - - -
