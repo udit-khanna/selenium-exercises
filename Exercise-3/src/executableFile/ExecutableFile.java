@@ -37,7 +37,8 @@ public class ExecutableFile {
 				System.setProperty("webdriver.chrome.driver", CHROMEDRIVERPATH);
 				driver = new ChromeDriver();
 			} else if (browserType.equalsIgnoreCase("IE")) {
-				driver = new InternetExplorerDriver();
+				System.setProperty("webdriver.ie.driver", IEDRIVERPATH);
+				WebDriver driver = new InternetExplorerDriver();
 			}
 			driver.manage().timeouts().implicitlyWait(TimeOut, TimeUnit.SECONDS);
 			driver.manage().window().maximize();
