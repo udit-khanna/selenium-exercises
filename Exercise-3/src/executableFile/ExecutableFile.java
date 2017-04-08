@@ -15,6 +15,7 @@ public class ExecutableFile {
 	private static final String IEDRIVERPATH = System.getProperty("user.dir") + "\\Support_Files\\IEDriverServer.exe";
 	private static final String URL = "https://www.freecharge.in/";
 	private static final long TimeOut = 10;
+	private static final String phoneNum = "9555371977";
 	private static WebDriver driver;
 
 	public static void main(String[] args) {
@@ -23,6 +24,16 @@ public class ExecutableFile {
 
 		exe.openBrowser("Chrome");
 		exe.navigateTo(URL);
+		keyword.enterPhoneNum(driver, phoneNum);
+		keyword.selectAirtelOperator(driver);
+		keyword.tapSubmitButton(driver);
+		keyword.tapViewAllButton(driver);
+		keyword.getTotalRecommendedPlans(driver);
+		keyword.getAllFullTalktimeoffers(driver);
+		keyword.checkSMSPlans(driver);
+		keyword.clickFullTTButtton(driver);
+		keyword.checkOtherPlans(driver);
+		keyword.selectLeastValidityPlan(driver);
 		exe.closeDriver();
 
 	}
@@ -38,10 +49,10 @@ public class ExecutableFile {
 				driver = new ChromeDriver();
 			} else if (browserType.equalsIgnoreCase("IE")) {
 				System.setProperty("webdriver.ie.driver", IEDRIVERPATH);
-				WebDriver driver = new InternetExplorerDriver();
+				driver = new InternetExplorerDriver();
 			}
-			driver.manage().timeouts().implicitlyWait(TimeOut, TimeUnit.SECONDS);
 			driver.manage().window().maximize();
+			driver.manage().timeouts().pageLoadTimeout(TimeOut, TimeUnit.SECONDS);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
