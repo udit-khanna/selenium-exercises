@@ -2,6 +2,7 @@ package executableFile;
 
 import java.util.concurrent.TimeUnit;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -17,6 +18,7 @@ public class ExecutableFile {
 	private static final long TimeOut = 10;
 	private static final String number = "9555371977";
 	private static WebDriver driver;
+	private static Logger log = Logger.getLogger("devpinoyLogger");
 
 	public static void main(String[] args) {
 		ExecutableFile exe = new ExecutableFile();
@@ -35,6 +37,7 @@ public class ExecutableFile {
 	public void openBrowser(String browserType) {
 		try {
 			System.out.println("Opening Browser: " + browserType);
+			log.info("Opening Browser: " + browserType);
 			if (browserType.equalsIgnoreCase("firefox")) {
 				System.setProperty("webdriver.gecko.driver", FIREFOXDRIVERPATH);
 				driver = new FirefoxDriver();
@@ -48,6 +51,7 @@ public class ExecutableFile {
 			driver.manage().timeouts().implicitlyWait(TimeOut, TimeUnit.SECONDS);
 			driver.manage().window().maximize();
 		} catch (Exception e) {
+			log.error(e);
 			e.printStackTrace();
 		}
 	}
