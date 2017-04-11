@@ -13,16 +13,25 @@ public class ExecutableFile {
 	private static final String FIREFOXDRIVERPATH = System.getProperty("user.dir") + "\\Support_Files\\geckodriver.exe";
 	private static final String CHROMEDRIVERPATH = System.getProperty("user.dir") + "\\Support_Files\\chromedriver.exe";
 	private static final String IEDRIVERPATH = System.getProperty("user.dir") + "\\Support_Files\\IEDriverServer.exe";
-	private static final String URL = "https://www.freecharge.in/";
+//	private static final String URL = "https://www.freecharge.in/";
 	private static final long TimeOut = 10;
+	private static final String URL1 = "http://demoqa.com/droppable/";
+	private static final String URL2 = "http://store.demoqa.com/";
 	private static WebDriver driver;
 
 	public static void main(String[] args) {
 		ExecutableFile exe = new ExecutableFile();
 		Keywords keyword = new Keywords();
-
+		
+		/*		Working Code		*/
+//		exe.openBrowser("Chrome");
+//		exe.navigateTo(URL1);
+//		keyword.dragAndDrop(driver);
+//		exe.closeDriver();
+		
 		exe.openBrowser("Chrome");
-		exe.navigateTo(URL);
+		exe.navigateTo(URL2);
+		keyword.selectDropdownOption(driver);
 		exe.closeDriver();
 
 	}
