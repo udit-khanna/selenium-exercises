@@ -3,13 +3,10 @@ package keywords;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.IndexedColors;
@@ -31,7 +28,6 @@ public class Keywords {
 	private static final String planCostXpath = "//*[@class='_3Ek1g']/ul/li/p[1]";
 	private static final String planDetailsXpath = "//*[@class='_3Ek1g']/ul/li/div/p[2]";
 	private static final String validityXpath = "//*[@class='_3Ek1g']/ul/li/div/p[3]/span[2]";
-	private static final String proceedButtonXpath = "//*[@class='_3A7E-']/button";
 	private static final String viewAllXpath = "//*[@class='_3G6A5']";
 	private static final String submitButton = ".btn._2eaVn";
 	private static final String operatorDropdown = ".select-container.bR5l8.false > select";
@@ -95,7 +91,7 @@ public class Keywords {
 					newRow.createCell(j).setCellValue(allData.get(j).get(count));
 				}
 			}
-			File file = new File(System.getProperty("user.dir") + "\\Execution Results\\" + fileName);
+			File file = new File(System.getProperty("user.dir") + "\\Execution_Results\\" + fileName);
 			FileOutputStream inputStream = new FileOutputStream(file);
 			workbook.write(inputStream);
 			inputStream.close();
@@ -107,7 +103,7 @@ public class Keywords {
 
 	public void readExcelforFullTalktime(WebDriver driver) {
 		try {
-			File src = new File(System.getProperty("user.dir") + "\\Execution Results\\" + fileName);
+			File src = new File(System.getProperty("user.dir") + "\\Execution_Results\\" + fileName);
 			FileInputStream fis = new FileInputStream(src);
 			XSSFWorkbook wb = new XSSFWorkbook(fis);
 			XSSFSheet sheet = wb.getSheetAt(0);
@@ -124,8 +120,11 @@ public class Keywords {
 //				System.out.println(cell.getStringCellValue());
 				if(cell.getStringCellValue().contains(verifyText)){
 //					System.out.println(cell.getStringCellValue());
-					font.setColor(IndexedColors.BLUE.getIndex());
+//					font.setColor(IndexedColors.BLUE.getIndex());
+					style.setFillBackgroundColor(IndexedColors.BLUE.getIndex());
+					style.setFillPattern(CellStyle.BIG_SPOTS);
 		            style.setFont(font);
+		            cell.setCellStyle(style);
 				}
 			}
 			fis.close();
