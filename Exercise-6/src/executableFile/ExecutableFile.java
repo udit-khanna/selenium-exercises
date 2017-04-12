@@ -17,6 +17,10 @@ public class ExecutableFile {
 	private static final long TimeOut = 10;
 	private static final String URL1 = "http://demoqa.com/droppable/";
 	private static final String URL2 = "http://store.demoqa.com/";
+	private static final String URL3 = "https://www.google.co.in/";
+	private static final String textToEnter = "Sample Highlight";
+	private static final String URL4 = "https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_input_accept";
+	private static final String filePath = System.getProperty("user.dir") + "\\lib\\cglib-nodep-3.2.4.jar";
 	private static WebDriver driver;
 
 	public static void main(String[] args) {
@@ -29,11 +33,27 @@ public class ExecutableFile {
 //		keyword.dragAndDrop(driver);
 //		exe.closeDriver();
 		
-		exe.openBrowser("Chrome");
-		exe.navigateTo(URL2);
-		keyword.selectDropdownOption(driver);
-		exe.closeDriver();
+		/*		Working Code		*/
+//		exe.openBrowser("Chrome");
+//		exe.navigateTo(URL2);
+//		keyword.selectDropdownOption(driver);
+//		exe.closeDriver();
+		
+		/*		Working Code		*/
+//		exe.openBrowser("Chrome");
+//		exe.navigateTo(URL3);
+//		keyword.enterText(driver, textToEnter);
+//		keyword.highlightEnteredText(driver, textToEnter);
+//		keyword.rightClickAndCut(driver);
+//		exe.closeDriver();
 
+		exe.openBrowser("Chrome");
+		exe.navigateTo(URL4);
+		keyword.clickChooseFileButton(driver);
+		keyword.sendFilePath(driver, filePath);
+//		keyword.rightClickAndCut(driver);
+		exe.closeDriver();
+		
 	}
 
 	public void openBrowser(String browserType) {
