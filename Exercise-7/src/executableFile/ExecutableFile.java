@@ -23,6 +23,10 @@ public class ExecutableFile {
 
 		exe.openBrowser("Chrome");
 		exe.navigateTo(URL);
+		keyword.enterRandomNumber(driver);
+		keyword.selectRandomOperator(driver);
+		keyword.navigatoToPlans(driver);
+		keyword.selectRandomPlan(driver);
 		exe.closeDriver();
 
 	}
@@ -38,7 +42,7 @@ public class ExecutableFile {
 				driver = new ChromeDriver();
 			} else if (browserType.equalsIgnoreCase("IE")) {
 				System.setProperty("webdriver.ie.driver", IEDRIVERPATH);
-				WebDriver driver = new InternetExplorerDriver();
+				driver = new InternetExplorerDriver();
 			}
 			driver.manage().timeouts().implicitlyWait(TimeOut, TimeUnit.SECONDS);
 			driver.manage().window().maximize();
@@ -69,4 +73,3 @@ public class ExecutableFile {
 	}
 
 }
-
