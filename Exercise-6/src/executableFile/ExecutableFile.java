@@ -49,9 +49,10 @@ public class ExecutableFile {
 
 		exe.openBrowser("Chrome");
 		exe.navigateTo(URL4);
-		keyword.clickChooseFileButton(driver);
+//		keyword.clickChooseFileButton(driver);
 		keyword.sendFilePath(driver, filePath);
-//		keyword.rightClickAndCut(driver);
+		keyword.clickSubmitButton(driver);
+		keyword.checkFileUploaded(driver);
 		exe.closeDriver();
 		
 	}

@@ -13,7 +13,11 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import junit.framework.Assert;
 
 public class Keywords {
 
@@ -25,6 +29,10 @@ public class Keywords {
 	private static final String enterField = "lst-ib";
 	private static final String iFrame = "iframeResult";
 	private static final String chooseFileButton = "//*[@name='pic']";
+	private static final String submitButton = "//*[@type='submit']";
+	private static final String resultFrame = "iframeResult";
+	private static final String verificationTextXpath = "//*/h1";
+	private static final String verificationText = "Submitted Form Data";
 //	private static final CharSequence filePath = System.getProperty("user.dir") + "\\lib\\cglib-nodep-3.2.4.jar";
 
 
@@ -104,8 +112,6 @@ public class Keywords {
 		try {
 			driver.switchTo().frame(iFrame);
 			driver.findElement(By.xpath(chooseFileButton)).click();
-//			Actions actions = new Actions(driver);
-//			actions.sendKeys(filePath);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -113,26 +119,33 @@ public class Keywords {
 
 	public void sendFilePath(WebDriver driver, String filePath) {
 		try {
-//			Actions actions = new Actions(driver);
-//			actions.sendKeys(filePath);
-//			actions.sendKeys(Keys.RETURN);
-			
-			
-//			Copy your file's absolute path to the clipboard
-			StringSelection ss = new StringSelection(filePath);
-			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
-//			Paste the file's absolute path into the File name field of the File Upload dialog box
-			Robot robot = new Robot();
-			robot.keyPress(KeyEvent.VK_CONTROL);
-			robot.keyPress(KeyEvent.VK_V);
-			robot.keyRelease(KeyEvent.VK_V);
-			robot.keyRelease(KeyEvent.VK_CONTROL);
-			robot.keyPress(KeyEvent.VK_ENTER);
-			robot.keyRelease(KeyEvent.VK_ENTER);
+			driver.switchTo().frame(iFrame);
 			driver.findElement(By.xpath(chooseFileButton)).sendKeys(filePath);
-			driver.findElement(By.xpath(chooseFileButton)).sendKeys(Keys.RETURN);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-			Thread.sleep(2000);
+	public void clickSubmitButton(WebDriver driver) {
+		try {
+			driver.findElement(By.xpath(submitButton)).click();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@SuppressWarnings("deprecation")
+	public void checkFileUploaded(WebDriver driver) {
+		try {
+//			driver.switchTo().frame(resultFrame);
+			WebDriverWait wait = new WebDriverWait(driver, 10);
+			wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(verificationTextXpath))));
+			Assert.assertEquals(driver.findElement(By.xpath(verificationTextXpath)).getText(), verificationText);
+			if(driver.findElement(By.xpath(verificationTextXpath)).getText().equalsIgnoreCase(verificationText)){
+				System.out.println("file uploaded");
+			}
+			else
+				System.out.println("file not uploaded");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
